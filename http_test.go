@@ -1,6 +1,7 @@
 package foo
 
 import (
+	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -47,4 +48,25 @@ func Test_U_FormHandler_Template_Error(t *testing.T) {
 		t.Errorf("unexpected body.  got: %s, exp %s\n", got, exp)
 	}
 	*/
+}
+
+func Test_I_FormHandler_Template_Error(t *testing.T) {
+	ts := httptest.NewServer(App())
+	defer ts.Close()
+
+	res, err := http.Post(ts.URL+"/form", "application/x-www-form-urlencoded", strings.NewReader("%zzzzz"))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if got, exp := res.StatusCode, http.StatusInternalServerError; got != exp {
+		t.Errorf("unexpected status code: got %d, exp %d\n", got, exp)
+	}
+	b, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got, exp := string(b), "Oops!"; got != exp {
+		t.Errorf("unexpected body: got %s, exp %s\n", got, exp)
+	}
 }
