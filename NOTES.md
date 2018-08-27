@@ -1,7 +1,7 @@
 testing workshop
 ----------------
 
-github.com/matryer/moq — generates mock implementations of interfaces, with FooFunc() members. We have a few places where we use this pattern, this looks handy for 
+github.com/matryer/moq — generates mock implementations of interfaces, with FooFunc() members. We have a few places where we use this pattern, this looks handy for testing our Benefit interfaces!
 
 major takeaways:
 - our tests are testing too many things! our integration tests are testing the entire stack, which makes it harder to identify where the problem lies if there’s a failure
