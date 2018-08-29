@@ -18,7 +18,7 @@ going serverless:
 	- unclear to me how URL discovery works for the functions
 
 Go in Debian:
-	- their code search is neat, uses https://swtch.com/~rsc/regexp/regexp4.html
+	- their code search is neat, uses https://swtch.com/~rsc/regexp/regexp4.html, similar to Google's defunct Code Search product
 	- `pk4 <pkgname>` to get the source, `pk4-replace <pkgname>` to modify the source and rebuild. Handy!
 
 Specifications and MongoDB:
@@ -31,3 +31,8 @@ Adventures in cgo performance:
 	- calling Go from C is hella slow, 1-5ms per call
 	- C can't hold Go pointers, in case Go wants to have its garbage collector relocate memory
 		- workaround: use a map[uintptr]interface{}, pretend those are pointers?
+		- this workaround causes lots of contention, consider sharding to many maps with their own locks
+
+The importance of beginners:
+	- the number of Go developers approximately doubled in the past year, so most people are beginners!
+	- we should make it a welcoming community to beginners, because being new is hard
