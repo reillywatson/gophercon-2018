@@ -3,7 +3,6 @@ go scheduler saga: talked about how the Go scheduler is implemented. Interesting
 	- map goroutines onto $NUM_CPUS threads
 	- maintain a separate run queue for each thread
 	- when you make a blocking system call (for instance any I/O), read/write on a channel, or sleep, this calls into the scheduler
-	- scheduler 
 
 macaroons: like cookies but with more layers
 

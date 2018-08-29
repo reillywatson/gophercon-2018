@@ -18,4 +18,16 @@ going serverless:
 	- unclear to me how URL discovery works for the functions
 
 Go in Debian:
-	- pk4 <pkgname> to get the source, pk4-replace to modify the source and rebuild. Handy!
+	- their code search is neat, uses https://swtch.com/~rsc/regexp/regexp4.html
+	- `pk4 <pkgname>` to get the source, `pk4-replace <pkgname>` to modify the source and rebuild. Handy!
+
+Specifications and MongoDB:
+	- guy writing the Go MongoDB driver talked about how specs are complicated! Specs are incomplete or wrong, reference implementations are incorrect, etc.
+	- Took him a year to implement the BSON spec, which seems nuts to me, that spec does not seem very complicated.
+	- basically: expect everything to be hard.
+
+Adventures in cgo performance:
+	- calling C from Go is a bit slow, ~170ns per call
+	- calling Go from C is hella slow, 1-5ms per call
+	- C can't hold Go pointers, in case Go wants to have its garbage collector relocate memory
+		- workaround: use a map[uintptr]interface{}, pretend those are pointers?
